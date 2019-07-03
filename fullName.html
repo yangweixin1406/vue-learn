@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    {{fullName}}
+</div>
+
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            firstName: "Foo",
+            lastName: 'bar'
+        },
+        computed: {
+            fullName: function () {
+                return this.firstName + ' ' + this.lastName;
+            }
+        }
+    });
+
+</script>
+</body>
+</html>

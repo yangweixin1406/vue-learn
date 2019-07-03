@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <p>{{ msg | format('疯狂') }}</p>
+</div>
+
+<script>
+    Vue.filter('format',function (msg,arg) {
+        return msg.replace(/普通/g,arg);
+    });
+
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            msg: '大家好，我曾经也是一个普通人，普通的没人过问，我就是我，是一个平凡的我！！！'
+        }
+    })
+</script>
+</body>
+</html>

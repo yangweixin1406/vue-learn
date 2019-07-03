@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <p>Native msg is : {{message}}</p>
+    <p>New msg is : {{reverseMessage}}</p>
+</div>
+
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data:{
+            message: 'What are you doing now? Are you kidding?'
+        },
+        computed: {
+            reverseMessage: function () {
+                return this.message.split('').reverse().join('')
+            }
+        }
+    });
+    console.log(vm.message);
+    vm.message = "Everything is nothing.";
+</script>
+</body>
+</html>

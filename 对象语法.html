@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue/vue.min.js"></script>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+        }
+        .active{
+            background: aqua;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="box" v-bind:class="{ active : isActive }">
+
+    </div>
+    <div v-bind:class="classObj">
+
+    </div>
+</div>
+
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            isActive: true,
+            error: null
+            // classObj: {
+            //     active: true,
+            //     'box': true
+            // }
+        },
+        computed: {
+            classObj: function () {
+                return{
+                    active: this.isactive && !this.error,
+                    'box': this.error && this.error.type === 'fatal'
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue/vue.min.js"></script>
+    <script src="../vue/vue-router.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <h1>Hello App!</h1>
+    <p>
+        <router-link to="/foo">Go to Foo</router-link>
+        <router-link to="/bar">Go to Bar</router-link>
+    </p>
+    <!--路由出口-->
+    <router-view></router-view>
+</div>
+
+<script>
+    const Foo = {template: '<div>Foo</div>'};
+    const Bar = {template: '<div>Bar</div>'};
+
+    const routers = [
+        {path: '/foo',component: Foo},
+        {path: '/bar',component: Bar}
+    ];
+
+    const router = new VueRouter({
+        routers
+    });
+
+    const app = new Vue({
+        router
+    }).$mount('#app');
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <button v-on:click="counter += 1">Add one</button><br>
+    <span>I can do it at {{counter}} timers.</span>
+</div>
+
+<script>
+    var vm = new Vue({
+       el: '#app',
+       data: {
+           counter: 0
+       }
+    });
+</script>
+</body>
+</html>

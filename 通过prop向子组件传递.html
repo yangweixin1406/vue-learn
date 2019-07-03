@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <span>{{message}}</span>
+    <div>
+        <blog-post title="My name is China"></blog-post>
+    </div>
+</div>
+
+<script>
+    Vue.component('blog-post',{
+        props:['title'],
+        template: '<span>{{ title }}</span>'
+    });
+
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            message: 'nihoa'
+        }
+    })
+</script>
+</body>
+</html>

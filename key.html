@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li v-for="todo of todos" :key="todo.id">{{todo}}</li>
+    </ul>
+</div>
+
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            todos: {
+                name: "mike",
+                age: '15',
+                gender: "man"
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <button v-on:click="warn('From cannot be submitted yet.',$event)">
+        submit
+    </button>
+</div>
+
+<script>
+    var vm = new Vue({
+       el: '#app',
+       methods: {
+           warn: function (message,event) {
+              if(event) event.preventDefault();
+              alert(message);
+           }
+       }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <span>{{message}}</span>
+    <!--<input type="text" v-model="message">-->
+    <input type="text" v-bind:value="message" v-on:input="message = $event.target.value">
+</div>
+
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            message: 'This is mine.'
+        }
+    })
+</script>
+</body>
+</html>

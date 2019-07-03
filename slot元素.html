@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <alert-box>
+        Something wrong with you!
+    </alert-box>
+</div>
+
+<script>
+    Vue.component('alert-box',{
+        template:'<div class="demo">' +
+            '<strong>Error!</strong>' +
+            '<slot></slot>' +
+            '</div>'
+    })
+</script>
+</body>
+</html>

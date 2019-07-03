@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- <script src="vue/vue.min.js"></script> -->
+    <!-- v-cloak能够解决插值表达式的闪烁问题 -->
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <p v-cloak>{{msg}}</p>
+    </div>
+
+<script src="vue/vue.min.js"></script>
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: '大家好？'
+            }
+        })
+    </script>
+</body>
+
+</html>

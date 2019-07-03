@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <h1 id="h1">{{ msg }}</h1>
+</div>
+
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            msg: '你好！'
+        },
+        methods: {
+            show(){
+                console.log("这是执行的show方法");
+            }
+        },
+        beforeCreate (){   //遇到的第一个生命周期函数，这个函数是在 data 中的数据和 methods 方法加载之前；
+            // console.log(this.msg);
+            // this.show();
+        },
+        created (){     //第二个生命周期函数，这个时候 data 和 methods 已经加载
+            // console.log(this.msg);
+            // this.show();
+        },
+        beforeMount(){  //在Dom挂载之前，第三个生命周期函数,这个时候解析后的模板还存放在内存中，未发送到前端页面
+            console.log(document.getElementById('h1').innerText);  //数据还未发送到前端，仍是模板字符串
+        },
+
+    })
+</script>
+</body>
+</html>

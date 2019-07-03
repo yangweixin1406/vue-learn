@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <input type="checkbox" id="jack" value="jack" v-model="selectArray">
+    <label for="jack">Jack</label>
+    <input type="checkbox" id="Mick" value="MIck" v-model="selectArray">
+    <label for="jack">Mick</label>
+    <input type="checkbox" id="john" value="john" v-model="selectArray">
+    <label for="jack">john</label>
+    <span>被选择的是：{{selectArray}}</span>
+</div>
+<script>
+    var vm = new Vue({
+       el: '#app',
+       data: {
+           selectArray: []
+       }
+    });
+</script>
+</body>
+</html>

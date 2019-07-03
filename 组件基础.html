@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <my-component></my-component>
+    <my-component></my-component>
+    <my-component></my-component>
+</div>
+
+<script>
+    Vue.component('my-component',{
+        data: function () {
+            return{
+                count: 0
+            }
+        },
+        template: '<button v-on:click="count++">You click me {{count}} times.</button>'
+    });
+    var vm = new Vue({
+        el: '#app'
+    })
+</script>
+</body>
+</html>

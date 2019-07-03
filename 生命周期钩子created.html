@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+
+</div>
+
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data:{
+            message: "这是最后一次，该长大了！"
+        },
+
+        created: function () {
+            console.log('message is :'+ this.message);
+        },
+        beforeCreate: function(){
+            console.log("我是在创建之前的！！")
+        },
+    })
+</script>
+</body>
+</html>

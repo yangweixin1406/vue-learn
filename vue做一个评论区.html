@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue/vue.min.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #app{
+            width: 500px;
+            height: 500px;
+            margin: 0 auto;
+        }
+        ul{
+            list-style: none;
+        }
+        ul li{
+            width: 500px;
+            height: 50px;
+            border: 1px solid black;
+            margin-bottom: 10px;
+            border-radius: 10px;
+        }
+        ul li button{
+            float: right;
+            top: 10px;
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <form v-on:submit.prevent="addNewContent">
+        <ul>
+            <li is="my-component" v-for="(comment,index) of comments" :key="comment.id"
+               :name="comment.name" :title="comment.content" v-on:remove="comments.splice(index,1)"></li>
+        </ul>
+        <label for="userName">你的姓名：</label>
+        <input id="userName" v-model="newName" placeholder="请输入你的姓名"><br>
+        <label for="saying">输入你的评论：</label>
+        <input id="saying" v-model="newComment" placeholder="输入你的评论">
+        <button>评论</button>
+    </form>
+</div>
+
+<script>
+    Vue.component('my-component',{
+        props: ['name','title'],
+        template: '<li>{{name}} : {{title}}<button v-on:click="$emit(\'remove\')">x</button></li>'
+    });
+    var vm = new Vue({
+       el: '#app',
+       data: {
+           newName:'',
+           newComment: '',
+           comments: [
+               {
+                   id: 1,
+                   name:'Yang',
+                   content: '这是什么东西啊，垃圾。'
+               },
+               {
+                   id: 2,
+                   name: '开心的狗',
+                   content: '今天也是开心的一天呀，有大把的狗粮可以吃。'
+               },
+               {
+                   id: 3,
+                   name: '回忆专用小马甲',
+                   content: '当我看到两个学生拿着吃的从我身边经过，我就知道我今天必须得吃了。'
+               },
+               {
+                   id: 4,
+                   name: '追风少年刘全有',
+                   content: '拥有猪一样的手，并且猪一样的身体。'
+               }
+           ],
+           newContentId:5
+       },
+        methods:{
+           addNewContent: function () {
+               this.comments.push({
+                   id: this.newContentId++,
+                   name: this.newName,
+                   content: this.newComment
+               });
+               this.newComment = '';
+           }
+        }
+    });
+</script>
+</body>
+</html>

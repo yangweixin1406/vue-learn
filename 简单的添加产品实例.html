@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+    <script src="vue/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">添加品牌</h3>
+        </div>
+        <div class="panel-body form-inline">
+            <label>
+                ID:
+                <input type="text" v-model="id" class="form-control">
+            </label>
+            <label>
+                Name:
+                <input type="text" v-model="name" class="form-control" @keyup.enter="add">
+            </label>
+            <input type="button" class="btn btn-primary" @click="add" value="添加">
+            <label>
+                搜索名称的关键字:
+                <input type="text" v-model="keywords" class="form-control">
+            </label>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>CTime</th>
+            <th>Operation</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="item in search(keywords)" :key="item.id">
+            <td>{{ item.id }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.ctime | dateFormat() }}</td>
+            <td><a href="" @click.prevent="del(item.id)">删除</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    Vue.filter('dateFormat',function (dateStr,pattern = '') {
+        var dt = new Date(dateStr);
+
+        var y = dt.getFullYear();
+        var m = (dt.getMonth() + 1).toString().padStart(2,0);
+        var d = dt.getDate().toString().padStart(2,0);
+
+        if(pattern.toLowerCase() === 'yyyy-mm-dd'){
+            return `${y}-${m}-${d}`;
+        }else{
+            var hh = dt.getHours().toString().padStart(2,0);
+            var mm = dt.getMinutes().toString().padStart(2,0);
+            var ss = dt.getSeconds().toString().padStart(2,0);
+
+            return `${y}-${m}-${d} ${hh}:${mm}:${ss}`;
+        }
+    });
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            id: '',
+            name: '',
+            keywords: '',
+            list: [
+                { id: 1, name: "奔驰", ctime: new Date()},
+                { id: 2, name: "大众", ctime: new Date()},
+                { id: 3, name: "奥迪", ctime: new Date()},
+            ]
+        },
+        methods: {
+            add(){
+                if(this.id==='' || this.name === '') return;
+                var car = { id: this.id, name: this.name, ctime: new Date()};
+                this.list.push(car);
+                this.id = this.name = '';
+            },
+            del(id){
+                // this.list.splice(id,1);
+                //第一种方法
+                // this.list.some((item,i) => {
+                //     if(item.id == id){
+                //         this.list.splice(i,1);
+                //         return true;
+                //     }
+                //
+                // })
+
+                var index = this.list.findIndex(item => {
+                    if(item.id == id){
+                        return true;
+                    }
+                });
+                this.list.splice(index,1);
+            },
+            search(word){
+                // 第一种循环遍历方法
+                // var arr = [];
+                // this.list.forEach(item => {
+                //     if(item.name.indexOf(word) !== -1){
+                //         arr.push(item);
+                //     }
+                // })
+                // return arr;
+
+                //第二种方法
+                var arr = this.list.filter(item => {
+                    // if(item.name.indexOf(word) !== -1){
+                    //     return item;
+                    // }
+
+                    if(item.name.includes(word)){
+                        return item;
+                    }
+                });
+                return arr;
+            }
+        }
+    })
+</script>
+</body>
+</html>

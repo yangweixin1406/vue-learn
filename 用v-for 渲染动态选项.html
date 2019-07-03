@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <select v-model="selected">
+        <option v-for="option of options" v-bind:value="option.value">
+            {{option.text}}
+        </option>
+    </select>
+    <span>我的选择是： {{selected}}</span>
+</div>
+
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            selected: 'A',
+            options: [
+                {
+                    text: 1,value:'A'
+                },
+                {
+                    text: 2,value:'B'
+                },
+                {
+                    text: 3,value:'C'
+                },
+            ]
+        }
+    })
+</script>
+</body>
+</html>

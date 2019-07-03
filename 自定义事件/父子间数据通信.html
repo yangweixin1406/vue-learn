@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <comp-one></comp-one>
+</div>
+
+<script>
+    const component = {
+        model:{
+            prop: 'value1',
+            event: 'change'
+        },
+        props: {
+            value1: String
+        },
+        template:
+           `<div>
+                <span>这里显示的是子组件input的value1值</span>
+                <input type="text" @input="handleInput" :value="value1">
+           </div>`,
+        methods: {
+            handleInput: function (e) {
+                this.$emit('change',e.target.value)
+            }
+        }
+    };
+
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            myvalue: '123'
+        },
+        components: {
+            CompOne: component
+        },
+        template: `
+            <div>
+               <comp-one v-model="myvalue"></comp-one>
+               <p>这里显示的是父组件的myvalue值：{{myvalue}}</p>
+            </div>
+        `
+    })
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue/vue.min.js"></script>
+    <style>
+        .outerBox{
+            width: 500px;
+            height: 500px;
+            background: skyblue;
+        }
+        .box{
+            width: 50px;
+            height: 50px;
+            background: #4cae4c;
+            position: absolute;
+            top: 600px;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="outerBox" @click="outerClick">
+        <div class="box" @click="boxClick">
+
+        </div>
+    </div>
+</div>
+
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+
+        },
+        methods: {
+            outerClick(){
+                console.log('这是外层盒子的点击事件！');
+            },
+            boxClick(){
+                console.log('这是内层盒子的点击事件！');
+            }
+        }
+    })
+</script>
+</body>
+</html>

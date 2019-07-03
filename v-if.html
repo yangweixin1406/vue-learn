@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <span v-if="hide">我会不会显示呢？</span>
+    <span v-else>我应该会显示吧！</span>
+    <template v-if="OK">
+        <span>你是谁呀？</span>
+        <p>I donnot know what are you saying.</p>
+        <p>生活不止眼前的苟且，还有诗和远方。</p>
+    </template>
+    <span v-if="Math.random() > 0.5">我是大于0.5的，我比较大</span>
+    <span v-else-if="Math.random() > 0.3">我介于0.3-0.5</span>
+    <span v-else>剩下的都是我！</span>
+</div>
+
+<script>
+   var vm = new Vue({
+       el: '#app',
+       data: {
+           hide: false,
+           OK: true
+       }
+   })
+</script>
+</body>
+</html>

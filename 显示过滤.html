@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li v-for="item in evenNumbers">{{item}}</li>
+    </ul>
+    <ul>
+        <li v-for="item in odd(numbers)">{{item}}</li>
+    </ul>
+</div>
+
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            numbers: [1,5,3,6,9,10]
+        },
+        computed: {
+            evenNumbers: function () {
+                return this.numbers.filter(function (number) {
+                    return number % 2 === 0;
+                })
+            }
+        },
+        methods: {
+            odd: function (numbers) {
+                return numbers.filter(function (number) {
+                    return number % 2 === 1;
+                })
+            }
+        }
+    });
+</script>
+</body>
+</html>

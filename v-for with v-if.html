@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <ul v-if="todos.length">
+        <li v-for="(todo,index) in todos">
+            {{index}}:{{todo.message}}
+        </li>
+    </ul>
+</div>
+
+<script>
+    var vm = new Vue({
+       el: '#app',
+       data: {
+           todos: [
+               {message: 'Hello',name: 'Mike'},
+               {message: 'World',name: 'Tom'},
+               {message: 'Yex',name: 'Lion'}
+           ]
+       }
+    });
+    vm.todos.length = 1;
+</script>
+</body>
+</html>

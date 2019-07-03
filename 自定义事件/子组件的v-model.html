@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <span>{{price}}</span>
+    <input-price :value="price" @input="onInput"></input-price>
+</div>
+
+<script>
+    Vue.component('input-price',{
+        props: ['value'],
+        template: '<input type="text" :value="value" @input="updateVal($event.target.value)">',
+        methods: {
+            updateVal: function (val) {
+                this.$emit('input',val);
+            }
+        }
+    });
+
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            price: ''
+        },
+        methods: {
+            onInput: function (val) {
+                this.price = val;
+            }
+        }
+    })
+</script>
+</body>
+</html>

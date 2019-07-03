@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue/vue.min.js"></script>
+</head>
+<body>
+<div id="app" v-bind:style="{ fontSize: addFontSize + 'em' }">
+    <blog-post v-for="post in posts" v-bind:key="post.id" v-bind:post="post" v-on:large="addFontSize += 0.1"></blog-post>
+</div>
+
+<script>
+    Vue.component('blog-post',{
+        props: ['post'],
+        template: '<div>' +
+            '<h3>{{post.title}}</h3>' +
+            '<div v-html="post.content"></div>'+
+            '<button v-on:click="$emit(\'large\')">large text</button>'+
+            '</div>'
+    });
+
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            posts:[
+                {id:1, title:'I want dance',content: '在很久很久以前，你离开我，去远方翱翔，在很久很久以前。。。'},
+                {id:2, title:'I like movie,like movie',content: '外面的世界很精彩，外面的世界很无奈，当你发现外面的世界很精彩'},
+                {id:3, title:'You can try anything',content:'别再说是谁的错，让一切成灰，就算放下心中负累，一切难以挽回'}
+            ],
+            addFontSize:1
+        }
+    });
+</script>
+</body>
+</html>

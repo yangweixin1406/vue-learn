@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue/vue.min.js"></script>
+    <style>
+        .red {
+            color: red;
+        }
+
+        .thin {
+            font-weight: normal;
+        }
+
+        .big {
+            font-size: 60px;
+        }
+
+        .active {
+            letter-spacing: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <!--<h1 :class="['red','thin',flag? 'active':'']">这是一个大标题，你能知道这是什么吗？？？</h1>-->
+
+    <h1 :class="['red','thin',{'active': flag}]">这是一个大标题，你能知道这是什么吗？？？</h1>
+</div>
+
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            flag: true
+        }
+    })
+</script>
+</body>
+</html>

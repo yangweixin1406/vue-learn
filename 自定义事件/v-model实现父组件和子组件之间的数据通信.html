@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <span>{{foo}}</span>
+    <my-checkbox v-model="foo" value="some value"></my-checkbox>
+</div>
+
+<script>
+    Vue.component('my-checkbox',{
+        model: {
+            prop: 'counter',
+            event: 'change'
+        },
+        props: {
+            value: String,
+            counter: {
+                type: Number,
+                default: 0
+            }
+        },
+        methods: {
+            fn(){
+                this.$emit('change',this.counter+2);
+            }
+        },
+        template: '<button @click="fn()">Add two counter</button>'
+    })
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            foo: 1
+        }
+    })
+</script>
+</body>
+</html>

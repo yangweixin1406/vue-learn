@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue/vue.min.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            margin-top: 20px;
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <form v-on:submit.prevent="addNewTodo">
+        <label for="new-todo">Add a todo</label>
+        <input v-model="newTodoText" id="new-todo" placeholder="Please typing a title...">
+        <button>Add</button>
+    </form>
+    <ul>
+        <li is="todo-item" v-for="(todo,index) of todos" :key="todo.id" v-bind:title="todo.title" v-on:remove="todos.splice(index,1)"></li>
+    </ul>
+</div>
+
+<script>
+    Vue.component('todo-item',{
+        props: ['title'],
+        template: '<li>{{title}}<button v-on:click="$emit(\'remove\')">remove</button></li>'
+    });
+
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            newTodoText: '',
+            todos: [
+                {
+                    id: 1,
+                    title: 'Do this thing!'
+                },
+                {
+                    id: 2,
+                    title: 'I can do anything.'
+                },
+                {
+                    id: 3,
+                    title: 'Come on baby.'
+                }
+            ],
+            nextTodoId: 4
+        },
+        methods: {
+            addNewTodo: function () {
+                this.todos.push({
+                    id: this.nextTodoId++,
+                    title: this.newTodoText
+                });
+                this.newTodoText = '';
+            }
+        }
+    })
+</script>
+</body>
+</html>
